@@ -61,7 +61,7 @@ describe('EmployeeListComponent', () => {
       expect(comp.dataSource.data).toEqual(expectedHeroes)})
   })
   fit('switch hit',async()=>{
-    
+    let x:Employee
    
     let  expectedHeroes: Employee[] =
       [{"id":1,"name":"Khairunnisa","role":"Sr Analyst"}, 
@@ -86,5 +86,9 @@ describe('EmployeeListComponent', () => {
       
  
   })
+  comp.ngAfterViewInit();
+  comp.dataSource.sortingDataAccessor(x,name)
+  expect(x[name]).toEqual("Khairunnisa")
+
 })
 });
