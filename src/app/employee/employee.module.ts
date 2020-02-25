@@ -5,6 +5,7 @@ import {EmployeeServiceService} from '../service/employee-service.service';
 import {HttpClientModule} from '@angular/common/http';
 
 import {
+  MatFormFieldModule,
   MatAutocompleteModule,
   MatButtonModule,
   MatButtonToggleModule,
@@ -45,7 +46,7 @@ import {
 @NgModule({
   declarations: [EmployeeListComponent],
   imports: [
-    CommonModule,HttpClientModule, MatAutocompleteModule,
+    CommonModule,HttpClientModule, MatAutocompleteModule,MatFormFieldModule,
     MatButtonModule,
     MatButtonToggleModule,
     MatCardModule,

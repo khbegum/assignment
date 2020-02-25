@@ -1,9 +1,10 @@
 
 
-<mat-form-field>
-  <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium">
-</mat-form-field>
+<<div class="example-header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+</div>
 <div class="example-container mat-elevation-z8">
   <mat-table #table [dataSource]="dataSource" matSort >
 

@@ -5,7 +5,7 @@ import { EmployeeListComponent } from './employee-list.component';
 import {
   MatInputModule,
   MatFormFieldModule,
-  MatTableModule,MatSortModule,
+  MatTableModule,MatSortModule
 
 } from '@angular/material';
 import {HttpClientModule} from '@angular/common/http';
@@ -13,6 +13,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Employee } from 'src/app/viewmodels/employeeModel';
 import { EmployeeServiceService } from 'src/app/service/employee-service.service';
+import { By } from '@angular/platform-browser';
 
 
 describe('EmployeeListComponent', () => {
@@ -58,37 +59,19 @@ describe('EmployeeListComponent', () => {
 
     service.getEmployees().subscribe(res=>{
       comp.dataSource.data=res;
-      expect(comp.dataSource.data).toEqual(expectedHeroes)})
-  })
-  fit('switch hit',async()=>{
-    let x:Employee
-   
-    let  expectedHeroes: Employee[] =
-      [{"id":1,"name":"Khairunnisa","role":"Sr Analyst"}, 
-      {"id":2,"name":"Sahithi","role":"Sr Analyst"},
+      expect(comp.dataSource.data).toEqual(expectedHeroes)
       
-      {"id":3,"name":"Seetha","role":"SrAnalyst"},
-      {"id":4,"name":"Pooja","role":"Analyst"},
-      {"id":5,"name":"Sreeja","role":"Analyst"},
-      {"id":6,"name":"SreeLekha","role":"SrAnalyst"}];
-      let comp= new EmployeeListComponent(service);
-    comp.getEmployeesFromService();
-
-    service.getEmployees().subscribe(res=>{
-      comp.dataSource.data=res;
-      expect(comp.dataSource.data.length).toEqual(6)
-      comp.applyFilter(event)
-      const filterValue = (event.target as HTMLInputElement).value;
-    expect( comp.dataSource.filter).toEqual("poo")
-      //expect(comp.dataSource.data).toEqual(expectedHeroes)})
-    
-
-      
- 
+     })
+     
   })
-  comp.ngAfterViewInit();
-  comp.dataSource.sortingDataAccessor(x,name)
-  expect(x[name]).toEqual("Khairunnisa")
+  it('Apply filter hit',async()=>{
+    const input = fixture.debugElement.query(By.css('input'));
+  input.triggerEventHandler('keyup', {});
+  fixture.detectChanges();
+    let filterValue:string=input.nativeElement.value;
+    component.applyFilter(filterValue);
+    expect(component.dataSource.filter).toBe(filterValue.trim().toLowerCase())
+  
 
 })
 });

@@ -1,39 +1,37 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import {
 
-  MatInputModule,
-  MatFormFieldModule,
-  MatTableModule
-
-} from '@angular/material';
 
 describe('AppComponent', () => {
+  let component=AppComponent;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule, MatInputModule,  MatFormFieldModule,
-
-        MatTableModule
-      
+        RouterTestingModule      
       ],
       declarations: [
         AppComponent
       ],
     }).compileComponents();
+    
   }));
-
-  it('should create the app', () => {
+  beforeEach(()=>{
     const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  });
+    const component = fixture.componentInstance;
+  })
+
+  // it('should create the app', () => {
+  //   const fixture = TestBed.createComponent(AppComponent);
+  //   const app = fixture.debugElement.componentInstance;
+  //   expect(app).toBeTruthy();
+  // });
 
   it(`should have as title 'my-app'`, () => {
+    let Comp=new AppComponent()
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('my-app');
+    expect(Comp.title).toEqual('my-app');
   });
 
 });
