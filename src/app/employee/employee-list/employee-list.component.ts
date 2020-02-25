@@ -21,7 +21,7 @@ dataSource = new MatTableDataSource<Employee>(this.employee);
 
   @ViewChild(MatSort,{static:true}) sort: MatSort;
 
-  sortBy:any;
+  
 
 
   ngOnInit() {
@@ -38,12 +38,13 @@ this.dataSource.data=res;
 
   
   ngAfterViewInit() {
-     console.log(' aaa' );
+   
     this.dataSource.sortingDataAccessor = (item, property) => {
     
   switch (property) {
     case 'name': {
       console.log(property);
+      console.log(item[property])
       return item[property];
       }
 
@@ -63,8 +64,9 @@ this.dataSource.data=res;
         
     
   }
-  applyFilter(event: Event) {
+  applyFilter(event: Event){
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+    console.log(this.dataSource.filter)
   }
 }
